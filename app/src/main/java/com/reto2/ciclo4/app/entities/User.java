@@ -5,34 +5,35 @@
  */
 package com.reto2.ciclo4.app.entities;
 
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
  * @author oacas
  */
 
-@Document(collection = "vegetarian")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-
-public class Producto{
-
-    @Id
-    private String reference;
-    private String brand;
-    private String category;
-    private String description;
-    private boolean availability = true;
-    private double price;
-    private Integer quantity;
-    private String photography;
-
-}
+@NoArgsConstructor
+@Document(collection="usuarios")
+@CrossOrigin("*")
+public class User implements Serializable{
     
-
+    @Id
+    private Integer id;
+    private String identification;
+    private String name;
+    private String address;
+    private String cellPhone;
+    private String email;
+    private String password;
+    private String zone;
+    private String type;
+    
+}

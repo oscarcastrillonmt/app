@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @CrossOrigin(origins="*", methods={RequestMethod.GET, RequestMethod.DELETE,
                                    RequestMethod.PUT, RequestMethod.POST})
-@RequestMapping("/api/Producto")
+@RequestMapping("/vegetarian")
 public class ProductoController {
     
     @Autowired
@@ -39,7 +39,7 @@ public class ProductoController {
         return service.getProductos();
     }
     
-    @PostMapping("/save")
+    @PostMapping("/new")
     public ResponseEntity addProducto(@RequestBody Producto producto){
         service.saveProducto(producto);
         return ResponseEntity.status(201).build();

@@ -6,10 +6,10 @@
 package com.reto2.ciclo4.app.services;
 
 import com.reto2.ciclo4.app.entities.Producto;
-import com.reto2.ciclo4.app.repositories.ProductoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.reto2.ciclo4.app.repositories.crud.ProductoCrudRepository;
 
 /**
  *
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class ProductoService {
     
     @Autowired
-    private ProductoRepository repository;
+    private ProductoCrudRepository repository;
     
     public List<Producto> getProductos(){
         return repository.findAll();
@@ -36,19 +36,21 @@ public class ProductoService {
     
     
     public Producto updateProducto(Producto producto){
-        Producto producto_anterior=getProductoId(producto.getId());
+        Producto producto_anterior= getProductoId(producto.getReference());
         
-        producto_anterior.setNombre_producto(producto.getNombre_producto());
-        producto_anterior.setPrecio(producto.getPrecio());
-        producto_anterior.setCategoria(producto.getCategoria());
-        producto_anterior.setStock(producto.getStock());
-        producto_anterior.setDescripcion(producto.getDescripcion());
+        producto_anterior.setBrand(producto.getBrand());
+        producto_anterior.setCategory(producto.getCategory());
+        producto_anterior.setDescription(producto.getDescription());
+        producto_anterior.setAvailability(producto.isAvailability());
+        producto_anterior.setPrice(producto.getPrice());
+        producto_anterior.setQuantity(producto.getQuantity());
+        producto_anterior.setPhotography(producto.getPhotography());
         
         return repository.save(producto_anterior);
     }
     
-    public void deleteProducto(String id){
-        repository.deleteById(id);
+    public void deleteProducto(String reference){
+        repository.deleteById(reference);
     }
     
 }
