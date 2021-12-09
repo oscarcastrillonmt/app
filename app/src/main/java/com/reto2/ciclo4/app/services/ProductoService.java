@@ -5,7 +5,7 @@
  */
 package com.reto2.ciclo4.app.services;
 
-import com.reto2.ciclo4.app.entities.Producto;
+import com.reto2.ciclo4.app.entities.Vegetarian;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,21 +22,21 @@ public class ProductoService {
     @Autowired
     private ProductoCrudRepository repository;
     
-    public List<Producto> getProductos(){
+    public List<Vegetarian> getProductos(){
         return repository.findAll();
     }
     
-    public Producto saveProducto(Producto producto){
+    public Vegetarian saveProducto(Vegetarian producto){
         return repository.save(producto);
     }
     
-    public Producto getProductoId(String id){
+    public Vegetarian getProductoId(String id){
         return repository.findById(id).orElse(null);
     }
     
     
-    public Producto updateProducto(Producto producto){
-        Producto producto_anterior= getProductoId(producto.getReference());
+    public Vegetarian updateProducto(Vegetarian producto){
+        Vegetarian producto_anterior= getProductoId(producto.getReference());
         
         producto_anterior.setBrand(producto.getBrand());
         producto_anterior.setCategory(producto.getCategory());

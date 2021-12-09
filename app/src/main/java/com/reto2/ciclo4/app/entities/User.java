@@ -5,7 +5,8 @@
  */
 package com.reto2.ciclo4.app.entities;
 
-import java.io.Serializable;
+
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,12 +24,15 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @NoArgsConstructor
 @Document(collection="usuarios")
 @CrossOrigin("*")
-public class User implements Serializable{
+public class User {
     
     @Id
+    
     private Integer id;
     private String identification;
     private String name;
+    private Date birthDay;
+    private String monthBirthDay;
     private String address;
     private String cellPhone;
     private String email;

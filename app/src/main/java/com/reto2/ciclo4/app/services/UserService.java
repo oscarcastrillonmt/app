@@ -46,23 +46,49 @@ public class UserService {
  
     
     public User create(User user){
+        
+        
+        Optional<User> userIdMaximo = repositorio.lastUserId();
+        
         if(user.getId()==null){
-            return user;
-        } else{
-            Optional<User> e =repositorio.getUser(user.getId());
-            
-            if(e.isPresent()){
-                if(existeEmail(user.getEmail())==true){
-                    return user;
-                }else{
-                    return repositorio.create(user);
-                }
-                
+           if(!userIdMaximo.isPresent()){
+                user.setId(1);
             }else{
-                return repositorio.create(user);
+                user.setId(userIdMaximo.get().getId()+1);
+            } 
+        }        
+        
+        Optional<User> e = repositorio.getUser(user.getId());
+
+            if(!e.isPresent()){
+                if(existeEmail(user.getEmail())==false){
+                    return repositorio.create(user);
+                }else{
+                    return user;
+                }
+
+            }else{
+                return user;
             }
-            
-        }
+
+//       -----------------
+//        if(user.getId()==null){
+//            return user;
+//        } else{
+//            Optional<User> e =repositorio.getUser(user.getId());
+//            
+//            if(!e.isPresent()){
+//                if(existeEmail(user.getEmail())==false){
+//                    return repositorio.create(user);
+//                }else{
+//                    return user;
+//                }
+//                
+//            }else{
+//                return user;
+//            }
+//            
+//        }
         
     }
     

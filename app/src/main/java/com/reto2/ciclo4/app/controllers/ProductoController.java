@@ -5,7 +5,7 @@
  */
 package com.reto2.ciclo4.app.controllers;
 
-import com.reto2.ciclo4.app.entities.Producto;
+import com.reto2.ciclo4.app.entities.Vegetarian;
 import com.reto2.ciclo4.app.services.ProductoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,18 +35,18 @@ public class ProductoController {
     private ProductoService service;
     
     @GetMapping("/all")
-    public List<Producto> getProducto(){
+    public List<Vegetarian> getProducto(){
         return service.getProductos();
     }
     
     @PostMapping("/new")
-    public ResponseEntity addProducto(@RequestBody Producto producto){
+    public ResponseEntity addProducto(@RequestBody Vegetarian producto){
         service.saveProducto(producto);
         return ResponseEntity.status(201).build();
     }
     
     @PutMapping("/update")
-    public ResponseEntity updateProducto(@RequestBody Producto producto){
+    public ResponseEntity updateProducto(@RequestBody Vegetarian producto){
         service.updateProducto(producto);
         return ResponseEntity.status(201).build();
     }

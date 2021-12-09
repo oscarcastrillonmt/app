@@ -52,4 +52,9 @@ public class UserRepository {
     public void delete(User user){
         repositorioCrud.delete(user);
     }
+    
+    public Optional<User> lastUserId(){
+        return repositorioCrud.findTopByOrderByIdDesc();
+        
+    }
 }

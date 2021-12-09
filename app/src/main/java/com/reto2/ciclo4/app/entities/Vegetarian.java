@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package com.reto2.ciclo4.app.entities;
 
@@ -20,10 +19,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
-public class Producto{
-
-    @Id
+public class Vegetarian {
+    
+     @Id
     private String reference;
     private String brand;
     private String category;
@@ -32,7 +30,4 @@ public class Producto{
     private double price;
     private Integer quantity;
     private String photography;
-
 }
-    
-
