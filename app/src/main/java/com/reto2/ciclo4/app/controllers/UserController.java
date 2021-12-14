@@ -8,6 +8,7 @@ package com.reto2.ciclo4.app.controllers;
 import com.reto2.ciclo4.app.entities.User;
 import com.reto2.ciclo4.app.services.UserService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,12 @@ public class UserController {
     @GetMapping("/all")
     public List<User> listar(){
         return servicio.listar();
+    }
+    
+    
+    @GetMapping("/{id}")
+    public Optional<User> getUser(@PathVariable("id") int id){
+        return servicio.getUser(id);
     }
     
     /**

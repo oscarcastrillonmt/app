@@ -134,8 +134,8 @@ public class UserService {
     }
     
     
-    public Optional<User> getUser(int Id){
-        return repositorio.getUser(Id);
+    public Optional<User> getUser(int id){
+        return repositorio.getUser(id);
     }
     
     public boolean delete(Integer id){

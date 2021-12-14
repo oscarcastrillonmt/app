@@ -39,6 +39,11 @@ public class ProductoController {
         return service.getProductos();
     }
     
+    @GetMapping("/{id}")
+    public Vegetarian getProductoId(@PathVariable("id") String id){
+        return service.getProductoId(id);
+    }
+    
     @PostMapping("/new")
     public ResponseEntity addProducto(@RequestBody Vegetarian producto){
         service.saveProducto(producto);
