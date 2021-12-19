@@ -8,6 +8,7 @@ package com.reto2.ciclo4.app.controllers;
 import com.reto2.ciclo4.app.entities.Vegetarian;
 import com.reto2.ciclo4.app.services.ProductoService;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -40,7 +41,7 @@ public class ProductoController {
     }
     
     @GetMapping("/{id}")
-    public Vegetarian getProductoId(@PathVariable("id") String id){
+    public Optional<Vegetarian> getProductoId(@PathVariable("id") String id){
         return service.getProductoId(id);
     }
     
@@ -52,13 +53,25 @@ public class ProductoController {
     
     @PutMapping("/update")
     public ResponseEntity updateProducto(@RequestBody Vegetarian producto){
-        service.updateProducto(producto);
+        service.update(producto);
         return ResponseEntity.status(201).build();
     }
     
     @DeleteMapping("/{id}")
     public ResponseEntity deleteProducto(@PathVariable String id){
-        service.deleteProducto(id);
+        service.delete(id);
         return ResponseEntity.status(204).build();
     }
+    
+    @GetMapping("/price/{price}")
+    public List<Vegetarian> productByPrice(@PathVariable("price") double precio) {
+        return service.productByPrice(precio);
+    }
+
+    //Reto 5
+    @GetMapping("/description/{description}")
+    public List<Vegetarian> findByDescriptionLike(@PathVariable("description") String description) {
+        return service.findByDescriptionLike(description);
+    }
 }
+

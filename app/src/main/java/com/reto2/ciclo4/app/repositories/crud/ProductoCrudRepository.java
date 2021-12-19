@@ -18,5 +18,12 @@ import org.springframework.stereotype.Repository;
 
 
 public interface ProductoCrudRepository extends MongoRepository<Vegetarian, String>{
+    
+      //Reto 5
+    public List<Vegetarian> findByPriceLessThanEqual(double precio);
+    
+    //Reto 5
+    @Query("{'description':{'$regex':'?0','$options':'i'}}")
+    public List<Vegetarian> findByDescriptionLike(String description);
    
 }

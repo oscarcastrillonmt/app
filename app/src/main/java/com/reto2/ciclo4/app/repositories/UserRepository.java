@@ -57,4 +57,8 @@ public class UserRepository {
         return repositorioCrud.findTopByOrderByIdDesc();
         
     }
+    
+     public List<User> birthtDayList(String monthBirthtDay) {
+        return repositorioCrud.findByMonthBirthtDay(monthBirthtDay);
+    }
 }

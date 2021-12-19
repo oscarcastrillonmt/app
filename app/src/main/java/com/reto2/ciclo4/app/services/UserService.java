@@ -129,5 +129,8 @@ public class UserService {
         return aBoolean;
     }
     
+    public List<User> birthtDayList(String monthBirthtDay) {
+        return repositorio.birthtDayList(monthBirthtDay);
+    }
     
 }

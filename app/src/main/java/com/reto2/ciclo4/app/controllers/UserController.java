@@ -70,6 +70,17 @@ public class UserController {
     }
     
     /**
+     * Get
+     * @param monthBirthtDay
+     * @return 
+     */
+    
+    @GetMapping("/birthday/{month}")
+    public List<User> birthtDayList(@PathVariable("month") String monthBirthtDay) {
+        return servicio.birthtDayList(monthBirthtDay);
+    }
+    
+    /**
      * POST
      */
     
@@ -98,4 +109,5 @@ public class UserController {
     public boolean delete(@PathVariable("id") Integer id){
         return servicio.delete(id);
     }
+    
 }

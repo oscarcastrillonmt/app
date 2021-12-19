@@ -6,10 +6,13 @@
 package com.reto2.ciclo4.app.services;
 
 import com.reto2.ciclo4.app.entities.Vegetarian;
+import com.reto2.ciclo4.app.repositories.ProductoRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.reto2.ciclo4.app.repositories.crud.ProductoCrudRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  *
@@ -20,37 +23,89 @@ import com.reto2.ciclo4.app.repositories.crud.ProductoCrudRepository;
 public class ProductoService {
     
     @Autowired
-    private ProductoCrudRepository repository;
+    private ProductoRepository repository;
     
     public List<Vegetarian> getProductos(){
-        return repository.findAll();
+        return repository.getAll();
     }
     
     public Vegetarian saveProducto(Vegetarian producto){
-        return repository.save(producto);
+        return repository.create(producto);
     }
     
-    public Vegetarian getProductoId(String id){
-        return repository.findById(id).orElse(null);
+    public Optional<Vegetarian> getProductoId(String reference) {
+        return repository.getproduct(reference);
+    }
+    
+    public Vegetarian update(Vegetarian accesory) {
+
+        if (accesory.getReference() != null) {
+            Optional<Vegetarian> accesoryDb = repository.getproduct(accesory.getReference());
+            if (accesoryDb.isPresent()) {
+
+                if (accesory.getBrand() != null) {
+                    accesoryDb.get().setBrand(accesory.getBrand());
+                }
+
+                if (accesory.getCategory() != null) {
+                    accesoryDb.get().setCategory(accesory.getCategory());
+                }
+
+                if (accesory.getDescription() != null) {
+                    accesoryDb.get().setDescription(accesory.getDescription());
+                }
+                if (accesory.getPrice() != 0.0) {
+                    accesoryDb.get().setPrice(accesory.getPrice());
+                }
+                if (accesory.getQuantity() != 0) {
+                    accesoryDb.get().setQuantity(accesory.getQuantity());
+                }
+                if (accesory.getPhotography() != null) {
+                    accesoryDb.get().setPhotography(accesory.getPhotography());
+                }
+                accesoryDb.get().setAvailability(accesory.isAvailability());
+                repository.update(accesoryDb.get());
+                return accesoryDb.get();
+            } else {
+                return accesory;
+            }
+        } else {
+            return accesory;
+        }
+    }
+    
+//    public Vegetarian updateProducto(Vegetarian producto){
+//        Optional<Vegetarian> producto_anterior= getProductoId(producto.getReference());
+//        
+//        producto_anterior.setBrand(producto.getBrand());
+//        producto_anterior.setCategory(producto.getCategory());
+//        producto_anterior.setDescription(producto.getDescription());
+//        producto_anterior.setAvailability(producto.isAvailability());
+//        producto_anterior.setPrice(producto.getPrice());
+//        producto_anterior.setQuantity(producto.getQuantity());
+//        producto_anterior.setPhotography(producto.getPhotography());
+//        
+//        return repository.create(producto_anterior);
+//    }
+    
+   public boolean delete(String reference) {
+        Boolean aBoolean = getProductoId(reference).map(accesory -> {
+            repository.delete(accesory);
+            return true;
+        }).orElse(false);
+        return aBoolean;
     }
     
     
-    public Vegetarian updateProducto(Vegetarian producto){
-        Vegetarian producto_anterior= getProductoId(producto.getReference());
         
-        producto_anterior.setBrand(producto.getBrand());
-        producto_anterior.setCategory(producto.getCategory());
-        producto_anterior.setDescription(producto.getDescription());
-        producto_anterior.setAvailability(producto.isAvailability());
-        producto_anterior.setPrice(producto.getPrice());
-        producto_anterior.setQuantity(producto.getQuantity());
-        producto_anterior.setPhotography(producto.getPhotography());
-        
-        return repository.save(producto_anterior);
+    //Reto 5
+    public List<Vegetarian> productByPrice(double price) {
+        return repository.productByPrice(price);
     }
-    
-    public void deleteProducto(String reference){
-        repository.deleteById(reference);
+
+    //Reto 5
+    public List<Vegetarian> findByDescriptionLike(String description) {
+        return repository.findByDescriptionLike(description);
     }
     
 }

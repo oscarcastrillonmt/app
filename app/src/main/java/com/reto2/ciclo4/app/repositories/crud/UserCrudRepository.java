@@ -6,6 +6,7 @@
 package com.reto2.ciclo4.app.repositories.crud;
 
 import com.reto2.ciclo4.app.entities.User;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,7 @@ public interface UserCrudRepository extends MongoRepository <User, Integer> {
     
     //Selecciona usuario con el Id Maximo o el ultimo Id
     Optional<User> findTopByOrderByIdDesc();
+    
+    List<User> findByMonthBirthtDay(String monthBirthtDay);
     
 }
