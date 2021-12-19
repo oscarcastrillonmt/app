@@ -71,24 +71,7 @@ public class UserService {
                 return user;
             }
 
-//       -----------------
-//        if(user.getId()==null){
-//            return user;
-//        } else{
-//            Optional<User> e =repositorio.getUser(user.getId());
-//            
-//            if(!e.isPresent()){
-//                if(existeEmail(user.getEmail())==false){
-//                    return repositorio.create(user);
-//                }else{
-//                    return user;
-//                }
-//                
-//            }else{
-//                return user;
-//            }
-//            
-//        }
+
         
     }
     

@@ -84,4 +84,22 @@ public class OrderController {
     public boolean delete(@PathVariable("id") Integer id){
         return servicio.delete(id);
     }
+    
+        //Ordenes de un asesor
+    @GetMapping("/salesman/{id}")
+    public List<Order> ordersSalesManByID(@PathVariable("id") int id) {
+        return servicio.ordersSalesManByID(id);
+    }
+
+    //Ordenes de un asesor x Fecha
+    @GetMapping("/date/{date}/{id}")
+    public List<Order> ordersSalesManByDate(@PathVariable("date") String date, @PathVariable("id") int id) {
+        return servicio.ordersSalesManByDate(date, id);
+    }
+
+    //Ordenes de un asesor x Estado
+    @GetMapping("/state/{state}/{id}")
+    public List<Order> ordersSalesManByState(@PathVariable("state") String date, @PathVariable("id") int id) {
+        return servicio.ordersSalesManByState(date, id);
+    }
 }
