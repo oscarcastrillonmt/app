@@ -12,7 +12,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 /**
  *
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document(collection="usuarios")
-@CrossOrigin("*")
 public class User {
     
     @Id

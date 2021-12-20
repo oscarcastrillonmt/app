@@ -29,8 +29,12 @@ public class ProductoService {
         return repository.getAll();
     }
     
-    public Vegetarian saveProducto(Vegetarian producto){
-        return repository.create(producto);
+    public Vegetarian create(Vegetarian producto) {
+        if (producto.getReference() == null) {
+            return producto;
+        } else {
+            return repository.create(producto);
+        }
     }
     
     public Optional<Vegetarian> getProductoId(String reference) {
